@@ -580,7 +580,7 @@ class ImageProcessor implements \Psr\Log\LoggerAwareInterface
 
 				try {
 					$im = @imagecreatefromstring($data);
-				} catch($e) {
+				} catch(Exception $e) {
 					$im = null;
 				}
 
