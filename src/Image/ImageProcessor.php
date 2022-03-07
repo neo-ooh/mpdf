@@ -578,7 +578,12 @@ class ImageProcessor implements \Psr\Log\LoggerAwareInterface
 					return $this->imageError($file, $firsttime, sprintf('GD library with PNG support required for image (%s)', $errpng));
 				}
 
-				$im = @imagecreatefromstring($data);
+				try {
+					$im = @imagecreatefromstring($data);
+				} catch($e) {
+					$im = null;
+				}
+
 				if (!$im) {
 					return $this->imageError($file, $firsttime, sprintf('Error creating GD image from PNG file (%s)', $errpng));
 				}
